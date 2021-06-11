@@ -1,0 +1,14 @@
+{
+    "name": "boids",
+    "version": "1.0.0",
+    "main": "main.js",
+    "devDependencies": {
+        "electron": "^13.1.2",
+        "eslint": "^7.28.0",
+        "eslint-config-strongloop": "^2.1.0"
+    },
+    "scripts": {
+        "pretest": "eslint --ignore-path .gitignore .",
+        "start": "electron ."
+    }
+}
