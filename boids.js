@@ -26,20 +26,10 @@ function distance(boid1, boid2) {
   );
 }
 
-// TODO: This is naive and inefficient.
-function nClosestBoids(boid, n) {
-  // Make a copy
-  const sorted = boids.slice();
-  // Sort the copy by distance from `boid`
-  sorted.sort((a, b) => distance(boid, a) - distance(boid, b));
-  // Return the `n` closest
-  return sorted.slice(1, n + 1);
-}
-
 // Called initially and whenever the window resizes to update the canvas
 // size and width/height variables.
 function sizeCanvas() {
-  const canvas = document.getElementById("boids");
+  const canvas = document.getElementById('boids');
   width = window.innerWidth;
   height = window.innerHeight;
   canvas.width = width;
@@ -56,7 +46,7 @@ function keepWithinBounds(boid) {
     boid.dx += turnFactor;
   }
   if (boid.x > width - margin) {
-    boid.dx -= turnFactor
+    boid.dx -= turnFactor;
   }
   if (boid.y < margin) {
     boid.dy += turnFactor;
@@ -156,7 +146,7 @@ function drawBoid(ctx, boid) {
   ctx.translate(boid.x, boid.y);
   ctx.rotate(angle);
   ctx.translate(-boid.x, -boid.y);
-  ctx.fillStyle = "#558cf4";
+  ctx.fillStyle = '#558cf4';
   ctx.beginPath();
   ctx.moveTo(boid.x, boid.y);
   ctx.lineTo(boid.x - 15, boid.y + 5);
@@ -166,7 +156,7 @@ function drawBoid(ctx, boid) {
   ctx.setTransform(1, 0, 0, 1, 0, 0);
 
   if (DRAW_TRAIL) {
-    ctx.strokeStyle = "#558cf466";
+    ctx.strokeStyle = '#558cf466';
     ctx.beginPath();
     ctx.moveTo(boid.history[0][0], boid.history[0][1]);
     for (const point of boid.history) {
@@ -190,12 +180,12 @@ function animationLoop() {
     // Update the position based on the current velocity
     boid.x += boid.dx;
     boid.y += boid.dy;
-    boid.history.push([boid.x, boid.y])
+    boid.history.push([boid.x, boid.y]);
     boid.history = boid.history.slice(-50);
   }
 
   // Clear the canvas and redraw all the boids in their current positions
-  const ctx = document.getElementById("boids").getContext("2d");
+  const ctx = document.getElementById('boids').getContext('2d');
   ctx.clearRect(0, 0, width, height);
   for (let boid of boids) {
     drawBoid(ctx, boid);
@@ -207,7 +197,7 @@ function animationLoop() {
 
 window.onload = () => {
   // Make sure the canvas always fills the whole window
-  window.addEventListener("resize", sizeCanvas, false);
+  window.addEventListener('resize', sizeCanvas, false);
   sizeCanvas();
 
   // Randomly distribute the boids to start
